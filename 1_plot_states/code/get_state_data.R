@@ -8,7 +8,8 @@ get_state_data <- function(my_state) {
   
   state_dat <- data.frame(value = sample(1:100, 20, replace = TRUE),
                           long = sample(long_seq, 20),
-                          lat = sample(lat_seq, 20))
+                          lat = sample(lat_seq, 20),
+                          state = my_state)
   
   return(state_dat)
 }

@@ -5,11 +5,15 @@ packages:
 
 sources:
   - 1_plot_states/code/get_state_data.R
+  - 1_plot_states/code/plot_functions.R
 
 targets:
   1_plot_states:
     depends:
-      - minnesota_data
+      - 1_plot_states/out/minnesota_plot.png
       
   minnesota_data:
     command: get_state_data(my_state = I('minnesota'))
+    
+  1_plot_states/out/minnesota_plot.png:
+    command: plot_state_data(minnesota_data, target_name)
