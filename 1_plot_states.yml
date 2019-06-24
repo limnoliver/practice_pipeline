@@ -11,9 +11,23 @@ targets:
   1_plot_states:
     depends:
       - 1_plot_states/out/minnesota_plot.png
-      
+      - 1_plot_states/out/iowa_plot.png
+      - 1_plot_states/inout/iowa_data.csv
+
   minnesota_data:
-    command: get_state_data(my_state = I('minnesota'))
+    command: get_state_data(my_state = I('minnesota'), samp_size=20)
+    
+  iowa_data:
+    command: get_state_data(my_state = I('iowa'), samp_size=20)
+    
+  1_plot_states/inout/minnesota_data.csv:
+    command: write.csv(minnesota_data, file=target_name, row.names=I(F))
+
+  1_plot_states/inout/iowa_data.csv:
+    command: write.csv(iowa_data, file=target_name, row.names=I(F))
     
   1_plot_states/out/minnesota_plot.png:
     command: plot_state_data(minnesota_data, target_name)
+    
+  1_plot_states/out/iowa_plot.png:
+    command: plot_state_data(iowa_data, target_name)
